@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+}
+
+#menu {
+    background-color: #820E15;
+    width: 300px;
+    height: 100vh;
+}
+
+#menu .logo {
+    display: flex;
+    align-items: center;
+    color: #FAB20B;
+    padding: 30px 0 0 30px;
+}
+
+#menu .logo img {
+    width: 85px;
+    margin-right: 15px;
+}
+
+#menu .logo span {
+    font-size: 20px;
+}
+
+#menu .items {
+    margin-top: 300px;
+}
+
+#menu .items li{
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+}
+
+#menu .items li:hover{
+        background: #FAB20B;
+        cursor: pointer;
+}
+
+#menu .items li:nth-child(1){
+    border-left: 4px solid #FAB20B;
+}
+
+#menu .items li i{
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 20px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+#menu .items li:hover i,
+#menu .items li:hover a {
+    color: #ffffff;
+}
+
+#menu .items li a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 300px;
+    transition: 0.3s ease;
+}
+
+#interface {
+    width: calc(100% - 300px);
+}
+
+#interface .navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px 30px;
+    border-bottom: 3px solid #820E15;
+}
+
+#interface .navigation .search{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid #FAB20B;
+    border-radius: 4px;
+}
+
+#interface .navigation .search i{
+    margin-right: 14px;
+}
+
+#interface .navigation .search input{
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.i-name {
+    color: #820E15;
+    padding: 30px 30px 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.board {
+    width: 94%;
+    margin: 30px 0 30px 30px;
+    overflow: auto;
+    background-color: #F9FAFB;
+    border-radius: 8px;
+        
+}
+
+.board h5 {
+    font-weight: 600;
+    font-size: 14px;
+    color: #820E15;
+}
+
+.board p{
+    font-weight: 400;
+    font-size: 15px;
+    color: #820E15;
+}
+
+.board .people{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+#dataContainer p {
+    border-bottom: 1px solid #820E15;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #820E15; 
+}
+
+#dataContainer p:first-child {
+    border-top: 1px solid #820E15;
+    margin-top: 30px; /* Add margin-top */
+}
+
+ /* CSS styles for table */
+ .table-container {
+    max-height: 500px; /* Adjust the max height as needed */
+    overflow-y: auto; /* Enable vertical scrollbar */
+}
+
+table {
+    width: 100%;
+    height: 100px;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 2px solid #820E15; 
+    padding: 9px; 
+    text-align: left; 
+}
+
+th {
+    background-color: #820E15; 
+    color: #333; 
+}
+
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#menu .archive-container .archive li {
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+    margin-top: 40px;
+}
+
+#menu .archive-container .archive li:hover {
+    background: #FAB20B;
+    cursor: pointer;
+}
+
+#menu .archive-container .archive li:nth-child(1) {
+    border-left: 4px solid #FAB20B;
+}
+
+#menu .archive-container .archive li i {
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 20px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+#menu .archive-container .archive li:hover i,
+#menu .archive-container .archive li:hover a {
+    color: #ffffff;
+}
+
+#menu .archive-container .archive li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 300px;
+    transition: 0.3s ease;
+}
+
+#menu .Dashboard-container .Dashboard li {
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+    margin-top: 40px;
+}
+
+#menu .Dashboard-container .Dashboard li:hover {
+    background: #FAB20B;
+    cursor: pointer;
+}
+
+#menu .Dashboard-container .Dashboard li:nth-child(1) {
+    border-left: 4px solid #FAB20B;
+}
+
+#menu .Dashboard-container .Dashboard li i {
+    color: rgb(0, 0, 0);
+    width: 30px;
+    height: 20px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+#menu .Dashboard-container .Dashboard li:hover i,
+#menu .Dashboard-container .Dashboard li:hover a {
+    color: #ffffff;
+}
+
+#menu .Dashboard-container .Dashboard li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 300px;
+    transition: 0.3s ease;
+}
+.disable-button {
+    background-color: #820E15; /* Red background color */
+    color: #ffffff; /* White text color */
+    border: none; /* No border */
+    padding: 8px 16px; /* Padding */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.disable-button:hover {
+    background-color: #FAB20B; /* Darker red on hover */
+}
+
+.disable-button:active {
+    transform: translateY(1px); /* Button pressed effect */
+}
+.enable-button {
+    background-color: #820E15; /* Red background color */
+    color: #ffffff; /* White text color */
+    border: none; /* No border */
+    padding: 8px 16px; /* Padding */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-left: 20px;
+}
+
+.enable-button:hover {
+    background-color: #FAB20B; /* Darker red on hover */
+}
+
+.enable-button:active {
+    transform: translateY(1px); /* Button pressed effect */
+}
+
+

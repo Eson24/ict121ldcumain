@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="logo.png"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDCUADMIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>  
+    
+    <section id="menu">
+        <div class="logo">
+            <img src="logo.png" alt="">
+            <h2>Admin</h2>
+        </div>
+        
+        <div class="Dashboard-container">
+            <div class="Dashboard">
+                <ul>
+                    <li><a href="#" id="Dashboard" style="color: #fff;"><i class="fa fa-tachometer""></i> Dashboard </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="archive-container">
+            <div class="archive">
+                <ul>
+                    <li><a href="#" id="archive" style="color: #fff;"><i class="fa fa-address-book"></i> Accounts </a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="items">
+            <ul>
+                <li><a href="#" id="logout" style="color: #fff;"><i class="fa fa-sign-out"></i> Log-out </a></li>
+            </ul>
+        </div>
+    </section>
+    
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" id="filterInput" placeholder="Search">
+
+                </div>
+            </div>
+        </div>  
+
+        <h3 class="i-name">
+            Account
+        </h3>
+
+        <div class="board">
+            <div class="table-container">
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <td>Emails</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody id="archiveDataContainer">
+                        <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getAuth, updateEmail, deleteUser } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwBJEmoJYnsVDtACiz_RSPvXcBZN1OtTk",
+            authDomain: "form-93d89.firebaseapp.com",
+            projectId: "form-93d89",
+            storageBucket: "form-93d89.appspot.com",
+            messagingSenderId: "973677111320",
+            appId: "1:973677111320:web:10f4df7595d105ecbbbb6d",
+            measurementId: "G-XX16R3NSWN"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        const auth = getAuth(); // Get the authentication service reference
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchDataAndUpdateContainer();
+    const filterInput = document.getElementById("filterInput");
+    filterInput.addEventListener("input", filterData);
+});
+
+async function fetchDataAndUpdateContainer() {
+    const archiveDataContainer = document.getElementById("archiveDataContainer");
+
+    try {
+        const querySnapshot = await getDocs(collection(db, "User"));
+        querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+            const email = userData.email ? userData.email : ""; // Check if email is defined
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${email}</td>
+                <td>
+                    <button class="disable-button" onclick="disableUser('${email}')">Disable</button>
+                    <button class="enable-button" onclick="enableUser('${email}')">Enable</button>
+                </td>
+            `;
+            archiveDataContainer.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    }
+}
+
+async function disableUser(email) {
+    try {
+        // Disable user email
+        await updateEmail(auth.currentUser, ""); // Update user's email to empty string
+        // Delete user account
+        await deleteUser(auth.currentUser);
+        console.log("User account disabled successfully.");
+    } catch (error) {
+        console.error("Error disabling user account: ", error);
+    }
+}
+
+async function enableUser(email) {
+    try {
+        // Implement logic to enable user (e.g., update email, activate account, etc.)
+        console.log("User account enabled successfully.");
+    } catch (error) {
+        console.error("Error enabling user account: ", error);
+    }
+}
+
+function filterData() {
+    const filterValue = document.getElementById("filterInput").value.toUpperCase();
+    const rows = document.querySelectorAll("#archiveDataContainer tr");
+
+    rows.forEach(row => {
+        const emailColumn = row.getElementsByTagName("td")[0]; // Email column
+        if (emailColumn) {
+            const emailText = emailColumn.textContent.toUpperCase();
+            if (emailText.includes(filterValue)) {
+                row.style.display = ""; // Show row if it matches the filter
+            } else {
+                row.style.display = "none"; // Hide row if it doesn't match the filter
+            }
+        }
+    });
+}
+    </script>
+
+    <script src="mainn.js"></script>
+</body>
+</html>
